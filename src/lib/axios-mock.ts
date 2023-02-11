@@ -1,7 +1,7 @@
 import { QueryFunction } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
-import { UninterceptedApiError } from '@/types/api';
+//import { UninterceptedApiError } from '@/types/api';
 
 /** Add NEXT_PUBLIC_MOCK_DEPLOYMENT_URL to your production deployment on vercel! */
 const baseURL = process.env.NEXT_PUBLIC_MOCK_DEPLOYMENT_URL
@@ -29,26 +29,26 @@ apiMock.interceptors.request.use(function (config) {
 apiMock.interceptors.response.use(
   (config) => {
     return config;
-  },
-  (error: AxiosError<UninterceptedApiError>) => {
-    // parse error
-    if (error.response?.data.message) {
-      return Promise.reject({
-        ...error,
-        response: {
-          ...error.response,
-          data: {
-            ...error.response.data,
-            message:
-              typeof error.response.data.message === 'string'
-                ? error.response.data.message
-                : Object.values(error.response.data.message)[0][0],
-          },
-        },
-      });
-    }
-    return Promise.reject(error);
   }
+  // (error: AxiosError<UninterceptedApiError>) => {
+  //   // parse error
+  //   if (error.response?.data.message) {
+  //     return Promise.reject({
+  //       ...error,
+  //       response: {
+  //         ...error.response,
+  //         data: {
+  //           ...error.response.data,
+  //           message:
+  //             typeof error.response.data.message === 'string'
+  //               ? error.response.data.message
+  //               : Object.values(error.response.data.message)[0][0],
+  //         },
+  //       },
+  //     });
+  //   }
+  //   return Promise.reject(error);
+  // }
 );
 
 export default apiMock;

@@ -1,6 +1,6 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
-import { UninterceptedApiError } from '@/types/api';
+//import { UninterceptedApiError } from '@/types/api';
 
 const baseURL = process.env.NEXT_PUBLIC_MOCK_DEPLOYMENT_URL
   ? `https://${process.env.NEXT_PUBLIC_MOCK_DEPLOYMENT_URL}/api/mock`
@@ -27,26 +27,26 @@ api.interceptors.request.use(function (config) {
 api.interceptors.response.use(
   (config) => {
     return config;
-  },
-  (error: AxiosError<UninterceptedApiError>) => {
-    // parse error
-    if (error.response?.data.message) {
-      return Promise.reject({
-        ...error,
-        response: {
-          ...error.response,
-          data: {
-            ...error.response.data,
-            message:
-              typeof error.response.data.message === 'string'
-                ? error.response.data.message
-                : Object.values(error.response.data.message)[0][0],
-          },
-        },
-      });
-    }
-    return Promise.reject(error);
   }
+  // (error: AxiosError<UninterceptedApiError>) => {
+  //   // parse error
+  //   if (error.response?.data.message) {
+  //     return Promise.reject({
+  //       ...error,
+  //       response: {
+  //         ...error.response,
+  //         data: {
+  //           ...error.response.data,
+  //           message:
+  //             typeof error.response.data.message === 'string'
+  //               ? error.response.data.message
+  //               : Object.values(error.response.data.message)[0][0],
+  //         },
+  //       },
+  //     });
+  //   }
+  //   return Promise.reject(error);
+  // }
 );
 
 export default api;
