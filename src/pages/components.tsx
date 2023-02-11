@@ -16,6 +16,7 @@ import TextButton from '@/components/buttons/TextButton';
 import Layout from '@/components/layout/Layout';
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
+import IconLink from '@/components/links/IconLink';
 import PrimaryLink from '@/components/links/PrimaryLink';
 import UnderlineLink from '@/components/links/UnderlineLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -455,6 +456,15 @@ export default function ComponentsPage() {
                 <Skeleton className='h-72 w-72' />
               </li>
             </ol>
+          </div>
+
+          <div className='mx-auto bg-pink-600'>
+            <IconLink
+              href='/'
+              icon={HiPlus}
+              iconClassName='text-black'
+              variant='primary'
+            />
           </div>
         </section>
       </main>
